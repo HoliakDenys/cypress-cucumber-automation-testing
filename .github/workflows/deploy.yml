@@ -27,7 +27,7 @@ jobs:
             - name: Copy Cypress reports to deploy folder
               run: |
                 mkdir -p public
-                cp -r cypress/reports/* public
+                cp -r cypress/reports/. public
 
             - name: Deploy to GitHub Pages
               uses: JamesIves/github-pages-deploy-action@v4
