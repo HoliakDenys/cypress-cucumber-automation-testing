@@ -1,37 +1,42 @@
-name: Deploy to GitHub Pages
+name: Deploy Allure Report to GitHub Pages
 
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v3
-    
-            - name: Set up Node.js
-              uses: actions/setup-node@v3
-              with:
-                node-version: '18'
-    
-            - name: Install dependencies
-              run: npm install
-    
-            - name: Run Cypress tests
-              run: npm run test:run:chrome
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-            - name: Copy Cypress reports to deploy folder
-              run: |
-                mkdir -p public
-                cp -r cypress/reports/. public
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-            - name: Deploy to GitHub Pages
-              uses: JamesIves/github-pages-deploy-action@v4
-              with:
-                branch: gh-pages
-                folder: public
-                token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress tests
+        run: npm run test:run:chrome
+
+      - name: Install Allure
+        run: npm install -D allure-commandline
+
+      - name: Generate Allure Report
+        run: |
+          npm run allure:generate
+          mkdir -p public
+          cp -r allure-report public/allure-report
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: public
+          clean: true
+          token: ${{ secrets.GITHUB_TOKEN }}
