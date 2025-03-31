@@ -1,0 +1,39 @@
+{
+  "name": "cypress-cucumber-automation-testing",
+  "version": "1.0.0",
+  "description": "Project for automated testing with Cypress and Cucumber",
+  "main": "index.js",
+  "scripts": {
+    "test:chrome": "npx cypress open --config-file cypress.config.chrome.ts",
+    "test:edge": "npx cypress open --config-file cypress.config.edge.ts",
+    "test:electron": "npx cypress open --config-file cypress.config.electron.ts",
+    "test:run:chrome": "npx cypress run --config-file cypress.config.chrome.ts",
+    "test:run:edge": "npx cypress run --config-file cypress.config.edge.ts",
+    "test:run:electron": "npx cypress run --config-file cypress.config.electron.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HoliakDenys/cypress-cucumber-automation-testing.git"
+  },
+  "keywords": [
+    "cypress",
+    "typescript",
+    "cucumber"
+  ],
+  "author": "Denys Holiak (https://github.com/HoliakDenys)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HoliakDenys/cypress-cucumber-automation-testing/issues"
+  },
+  "homepage": "https://github.com/HoliakDenys/cypress-cucumber-automation-testing#readme",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.4",
+    "cypress": "^14.2.1",
+    "cypress-xpath": "^2.0.1",
+    "dotenv": "^16.4.7",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^5.0.0",
+    "mochawesome-report-generator": "^6.2.0"
+  }
+}

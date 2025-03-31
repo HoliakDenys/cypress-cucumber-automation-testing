@@ -1,0 +1,37 @@
+name: Deploy to GitHub Pages
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+    
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                node-version: '18'
+    
+            - name: Install dependencies
+              uses: npm intall
+    
+            - name: Run Cypress tests
+              run: npm run test:run:chrome
+
+            - name: Copy Cypress reports to deploy folder
+              run: |
+                mkdir -p public
+                cp -r cypress/reports/* public
+
+            - name: Deploy to GitHub Pages
+              uses: JamesIves/github-pages-deploy-action@v4
+              with:
+                branch: gh-pages
+                folder: public
+                token: ${{ secrets.GITHUB_TOKEN }}
