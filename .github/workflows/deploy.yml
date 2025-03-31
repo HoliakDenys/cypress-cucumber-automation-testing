@@ -19,7 +19,7 @@ jobs:
                 node-version: '18'
     
             - name: Install dependencies
-              uses: npm intall
+              run: npm intall
     
             - name: Run Cypress tests
               run: npm run test:run:chrome
