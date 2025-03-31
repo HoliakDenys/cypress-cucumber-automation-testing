@@ -8,23 +8,19 @@ export default defineConfig({
   e2e: {
     specPattern: 'cypress/e2e/**/*.feature',
     baseUrl: process.env.BASE_URL,
-    reporter: 'mochawesome',
+    reporter: 'cypress-allure-plugin',
     reporterOptions: {
-      reportDir: 'cypress/reports',
-      overwrite: false,
-      html: true,
-      json: true,
+      resultsDir: 'cypress/allure-results',
     },
     async setupNodeEvents(on, config) {
       await addCucumberPreprocessorPlugin(on, config);
-
       on(
         'file:preprocessor',
         createBundler({
           plugins: [createEsbuildPlugin(config)],
         })
       );
-
+      require('@shelex/cypress-allure-plugin').install(on, config);
       return config;
     },
   },
