@@ -40,5 +40,6 @@ Then('the {string} section should be in view', (sectionName: string) => {
 });
 
 Then('all displayed articles should contain the {string} criteria', (filterName: string) => {
+    cy.wait(500);
     resourcesPage.checkFilterVisibility(filterName);
 });
