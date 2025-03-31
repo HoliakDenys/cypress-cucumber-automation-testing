@@ -17,7 +17,7 @@ When("I select {string} from the country dropdown", (country: string) => {
 
 Then("I should see only {string} in the table", (country: string) => {
   globalCoveragePage.CoverageTableNumberTypesTab
-    .find("button")
+    .find("tr")
     .should("have.length", 1)
     .should("have.text", country);
 });

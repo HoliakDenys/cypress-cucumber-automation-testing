@@ -5,4 +5,4 @@ Feature: Validation of country filter in Global Coverage (Number Types tab)
     When I click on the Number Types tab
     And I select "Austria" from the country dropdown
     And I click on the Number Types tab
-    Then I should see only "Austria " in the table
+    Then I should see only "Austria" in the table
