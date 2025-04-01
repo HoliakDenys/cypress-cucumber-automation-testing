@@ -17,24 +17,9 @@ export default class HomePage extends BasePage {
         return cy.contains('button[aria-haspopup="menu"] span', menuTabName);
     }
 
-    getLinkedInLink() {
+    getLinkByName(linkName: string) {
         return cy.fixture('socialLinks').then((socialLinks) => {
-            const linkedInUrl = socialLinks.LinkedIn;
-            return cy.get(`a[href="${linkedInUrl}"]`);
-        });
-    }
-    
-    getTwitterLink() {
-        return cy.fixture('socialLinks').then((socialLinks) => {
-            const twitterUrl = socialLinks.Twitter;
-            return cy.get(`a[href="${twitterUrl}"]`);
-        });
-    }
-    
-    getFacebookLink() {
-        return cy.fixture('socialLinks').then((socialLinks) => {
-            const facebookUrl = socialLinks.Facebook;
-            return cy.get(`a[href="${facebookUrl}"]`);
+            return cy.get(`a[href="${socialLinks[linkName]}"]`)
         });
     }
 
@@ -70,24 +55,10 @@ export default class HomePage extends BasePage {
     checkSocialLink(platformName: string) {
         cy.fixture('socialLinks').then((socialLinks) => {
             const url = socialLinks[platformName];
-            cy.request(url).its('status').should('eq', 200);
-        
-            let socialLink;
-            switch (platformName.toLowerCase()) {
-                case 'linkedin':
-                    socialLink = this.getLinkedInLink();
-                    break;
-                case 'facebook':
-                    socialLink = this.getFacebookLink();
-                    break;
-                case 'twitter':
-                    socialLink = this.getTwitterLink();
-                    break;
-                default:
-                    return;
-            }
     
-            socialLink
+            cy.request(url).its('status').should('eq', 200);
+    
+            this.getLinkByName(platformName)
                 .should('have.attr', 'href', url)
                 .and('have.attr', 'target');
         });

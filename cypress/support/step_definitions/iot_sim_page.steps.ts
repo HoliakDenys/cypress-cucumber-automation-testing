@@ -7,12 +7,8 @@ Given('I open the IoT SIM page', () => {
     iotSimPage.open();
 });
 
-When('the user changes the language to Japanese', () => {
-    iotSimPage.selectJapaneseLanguage();
-});
-
-When('the user changes the language to Korean', () => {
-    iotSimPage.selectKoreanLanguage();
+When(/^the user changes the language to (Japanese|Korean)$/, (language: string) => {
+    iotSimPage.selectLanguageByName(language);
 });
 
 When('I click on the {string} button', (faqButton: string) => {

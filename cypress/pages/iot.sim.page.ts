@@ -26,14 +26,9 @@ export default class IotSimPage extends BasePage {
         this.LanguageButton.should('contain.text', expectedText);
     }
 
-    selectJapaneseLanguage() {
+    selectLanguageByName(languageName: string) {
         this.LanguageButton.click({ force: true });
-        this.selectLanguage('日本語 (Japanese)');
-    }
-
-    selectKoreanLanguage() {
-        this.LanguageButton.click({ force: true });
-        this.selectLanguage('한국인 (Korean)');
+        this.selectLanguage(languageName);
     }
 
     checkJapanese() {
