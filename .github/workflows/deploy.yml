@@ -35,10 +35,9 @@ jobs:
           mkdir -p public
           mv allure-report public/allure-report
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: public/allure-report
-          clean: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit and Push Report to Another Branch
+        run: |
+          git checkout -b gh-pages
+          git add public/allure-report
+          git commit -m "Add new Allure report"
+          git push --force origin gh-pages
