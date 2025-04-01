@@ -35,9 +35,10 @@ jobs:
           mkdir -p public/allure-report
           mv allure-report/* public/allure-report/
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages (Only Report)
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public/allure-report
           publish_branch: gh-pages
+          force_orphan: true
