@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      BASE_URL: "https://telnyx.com/"
 
     steps:
       - name: Checkout repository
