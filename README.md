@@ -47,4 +47,4 @@ Test cases for this project are documented in a Google Sheet and can be accessed
 
 - The Allure report is generated after tests are run and deployed to **GitHub Pages**.
 - You can view the Allure report here after deployment:  
-[Allure Report]([https://yourusername.github.io/your-repository/allure-report/](https://holiakdenys.github.io/cypress-cucumber-automation-testing/allure-report/))
+[Allure Report](https://holiakdenys.github.io/cypress-cucumber-automation-testing/)
