@@ -51,7 +51,7 @@ export default class HomePage extends BasePage {
     }
 
     clickAdvancedSettingsButton(): void {
-        this.advancedSettingsButton.click({ force: true });
+        this.advancedSettingsButton.scrollIntoView().click({ force: true });
     }
 
     clickMenuTabByText(menuTabName: string) {

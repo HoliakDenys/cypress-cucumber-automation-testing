@@ -19,7 +19,7 @@ export default class GlobalCoveragePage extends BasePage {
     }
 
     get CoverageTableNumberTypesTab() {
-        return cy.get('table tbody');
+        return cy.get('div#accordion');
     }
 
     get ResetFiltersButton() {
@@ -39,7 +39,7 @@ export default class GlobalCoveragePage extends BasePage {
 
     verifyFilteringAndReset(country: string) {
         this.CoverageTableNumberTypesTab
-            .find('tr')
+            .find('button')
             .then(($buttonsBefore) => {
                 const initialCount = $buttonsBefore.length;
 
@@ -47,13 +47,13 @@ export default class GlobalCoveragePage extends BasePage {
                 this.clickNumberTypesButton();
 
                 this.CoverageTableNumberTypesTab
-                    .find('tr')
+                    .find('button')
                     .should('have.length', 1);
 
                 this.ResetFiltersButton.click({force: true});
 
                 this.CoverageTableNumberTypesTab
-                    .find('tr')
+                    .find('button')
                     .should('have.length', initialCount);
             });
     }
