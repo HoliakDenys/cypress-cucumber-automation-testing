@@ -3,6 +3,7 @@ import createBundler from '@bahmutov/cypress-esbuild-preprocessor';
 import { addCucumberPreprocessorPlugin } from '@badeball/cypress-cucumber-preprocessor';
 import { createEsbuildPlugin } from '@badeball/cypress-cucumber-preprocessor/esbuild';
 import dotenv from 'dotenv';
+import { allureCypress } from 'allure-cypress/reporter';
 
 dotenv.config();
 
@@ -20,7 +21,9 @@ export default defineConfig({
         })
       );
 
-      require('@shelex/cypress-allure-plugin/writer')(on, config);
+      allureCypress(on, config, {
+        resultsDir: 'allure-results',
+      });
 
       return config;
     },
