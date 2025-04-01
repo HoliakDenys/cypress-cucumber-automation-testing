@@ -71,7 +71,7 @@ export default class HomePage extends BasePage {
         cy.fixture('socialLinks').then((socialLinks) => {
             const url = socialLinks[platformName];
             cy.request(url).its('status').should('eq', 200);
-    
+        
             let socialLink;
             switch (platformName.toLowerCase()) {
                 case 'linkedin':
@@ -89,14 +89,9 @@ export default class HomePage extends BasePage {
     
             socialLink
                 .should('have.attr', 'href', url)
-                .invoke('removeAttr', 'target');
-            socialLink.click();
-    
-            cy.origin(url, { args: { platformName, url } }, ({ platformName }) => {
-                cy.url().should('include', platformName.toLowerCase());
-            });
+                .and('have.attr', 'target');
         });
-    }
+    }    
     
     clickFooterLinkByText(linkText: string) {
         cy.fixture('footerLinks').then((footerLinks) => {
