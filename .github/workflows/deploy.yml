@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      BASE_URL: "https://telnyx.com/"
 
     steps:
       - name: Checkout repository
@@ -22,7 +24,7 @@ jobs:
         run: npm install
 
       - name: Run Cypress tests
-        run: npm run test:run:chrome
+        run: npx cypress run
 
       - name: Install Allure
         run: npm install -D allure-commandline
